@@ -18,6 +18,7 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipesBinding.inflate(layoutInflater, container, false)
+        mBinding.recyclerView.showShimmer()
         return mBinding.root
     }
 
