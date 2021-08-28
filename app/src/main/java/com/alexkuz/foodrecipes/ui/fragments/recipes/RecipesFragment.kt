@@ -6,22 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-
 import androidx.lifecycle.ViewModelProvider
-
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alexkuz.foodrecipes.MainViewModel
-import com.alexkuz.foodrecipes.R
 import com.alexkuz.foodrecipes.adapters.RecipesAdapter
 import com.alexkuz.foodrecipes.databinding.FragmentRecipesBinding
-import com.alexkuz.foodrecipes.util.Constants.Companion.API_KEY
-import com.alexkuz.foodrecipes.util.Constants.Companion.QUERY_ADD_RECIPE_INFORMATION
-import com.alexkuz.foodrecipes.util.Constants.Companion.QUERY_API_KEY
-import com.alexkuz.foodrecipes.util.Constants.Companion.QUERY_DIET
-import com.alexkuz.foodrecipes.util.Constants.Companion.QUERY_FILL_INGREDIENTS
-import com.alexkuz.foodrecipes.util.Constants.Companion.QUERY_NUMBER
-import com.alexkuz.foodrecipes.util.Constants.Companion.QUERY_TYPE
 import com.alexkuz.foodrecipes.util.NetworkResult
+import com.alexkuz.foodrecipes.viewmodels.MainViewModel
+import com.alexkuz.foodrecipes.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -32,14 +23,20 @@ class RecipesFragment : Fragment() {
     private val mBinding get() = _binding!!
     private val mAdapter by lazy { RecipesAdapter() }
     private lateinit var mViewModel: MainViewModel
+    private lateinit var recipesViewModel: RecipesViewModel
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipesBinding.inflate(layoutInflater, container, false)
-
-        mViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         setupRecyclerView()
         requestApiData()
         return mBinding.root
@@ -49,7 +46,7 @@ class RecipesFragment : Fragment() {
 
 
     private fun requestApiData() {
-        mViewModel.getRecipes(applyQueries())
+        mViewModel.getRecipes(recipesViewModel.applyQueries())
         mViewModel.recipesResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
@@ -71,17 +68,7 @@ class RecipesFragment : Fragment() {
         })
     }
 
-    private fun applyQueries(): HashMap<String, String> {
-        val queries: HashMap<String, String> = HashMap()
 
-        queries[QUERY_NUMBER] = "50"
-        queries[QUERY_TYPE] = "finger food"
-        queries[QUERY_DIET] = "vegan"
-        queries[QUERY_ADD_RECIPE_INFORMATION] = "true"
-        queries[QUERY_FILL_INGREDIENTS] = "true"
-
-        return queries
-    }
 
     private fun setupRecyclerView() {
         mBinding.recyclerView.adapter = mAdapter

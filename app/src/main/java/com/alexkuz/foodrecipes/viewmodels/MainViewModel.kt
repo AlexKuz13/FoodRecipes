@@ -1,4 +1,4 @@
-package com.alexkuz.foodrecipes
+package com.alexkuz.foodrecipes.viewmodels
 
 import android.app.Application
 import android.content.Context
@@ -41,7 +41,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
+    private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe> {
         return when {
             response.message().toString().contains("timeout") ->
                 NetworkResult.Error("Timeout")
