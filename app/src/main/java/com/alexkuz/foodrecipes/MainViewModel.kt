@@ -10,10 +10,12 @@ import androidx.lifecycle.viewModelScope
 import com.alexkuz.foodrecipes.data.Repository
 import com.alexkuz.foodrecipes.models.FoodRecipe
 import com.alexkuz.foodrecipes.util.NetworkResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: Repository,
     application: Application
@@ -57,7 +59,7 @@ class MainViewModel @Inject constructor(
     }
 
 
-    fun hasInternetConnection(): Boolean {
+    private fun hasInternetConnection(): Boolean {
         val connectivityManager = getApplication<Application>().getSystemService(
             Context.CONNECTIVITY_SERVICE
         ) as ConnectivityManager

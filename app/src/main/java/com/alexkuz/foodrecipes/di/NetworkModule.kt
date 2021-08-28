@@ -1,11 +1,14 @@
 package com.alexkuz.foodrecipes.di
 
 import com.alexkuz.foodrecipes.data.network.FoodRecipeApi
+import com.alexkuz.foodrecipes.util.Constants.Companion.API_KEY
 import com.alexkuz.foodrecipes.util.Constants.Companion.BASE_URL
+import com.alexkuz.foodrecipes.util.Constants.Companion.QUERY_API_KEY
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,10 +23,33 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideInterceptor():Interceptor {
+        return Interceptor { chain ->
+            val url = chain.request()
+                .url()
+                .newBuilder()
+                .addQueryParameter(QUERY_API_KEY, API_KEY)
+                .build()
+
+            val request = chain.request()
+                .newBuilder()
+                .url(url)
+                .build()
+
+            return@Interceptor chain.proceed(request)
+        }
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(
+        interceptor: Interceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
+            .addInterceptor(interceptor)
             .build()
     }
 

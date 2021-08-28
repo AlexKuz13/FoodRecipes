@@ -21,6 +21,7 @@
     <dimen name="size_image_recipes">200dp</dimen>
     <dimen name="height_title_placeholder">50dp</dimen>
     <dimen name="size_describe_placeholder">65dp</dimen>
+    <dimen name="very_large_margin">25dp</dimen>
 
 
 </resources>
