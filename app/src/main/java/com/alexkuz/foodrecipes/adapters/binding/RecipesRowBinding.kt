@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.alexkuz.foodrecipes.R
-import java.net.URL
 
 class RecipesRowBinding {
 
@@ -25,6 +24,7 @@ class RecipesRowBinding {
         fun loadImageFromUrl(imageView: ImageView, imageUrl: String) {
             imageView.load(imageUrl){
                 crossfade(600)
+                error(R.drawable.ic_error_placeholder)
             }
         }
 

@@ -4,13 +4,13 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.alexkuz.foodrecipes.data.Repository
+import com.alexkuz.foodrecipes.data.database.RecipesEntity
 import com.alexkuz.foodrecipes.models.FoodRecipe
 import com.alexkuz.foodrecipes.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -21,6 +21,18 @@ class MainViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
+
+    /** ROOM */
+
+    var readRecipes: LiveData<List<RecipesEntity>> = repository.local.readDatabase().asLiveData()
+
+    private fun insertRecipes(recipesEntity: RecipesEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertRecipes(recipesEntity)
+        }
+    }
+
+    /** RETROFIT */
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
@@ -50,12 +62,18 @@ class MainViewModel @Inject constructor(
             response.body()!!.results.isNullOrEmpty() ->
                 NetworkResult.Error("Recipes not found")
             response.isSuccessful -> {
-                val foodRecipes = response.body()
-                NetworkResult.Success(foodRecipes!!)
+                val foodRecipes = response.body()!!
+                offlineCacheRecipes(foodRecipes)
+                NetworkResult.Success(foodRecipes)
             }
             else ->
                 NetworkResult.Error(response.message())
         }
+    }
+
+    private fun offlineCacheRecipes(foodRecipes: FoodRecipe) {
+        val recipesEntity = RecipesEntity(foodRecipes)
+        insertRecipes(recipesEntity)
     }
 
 
