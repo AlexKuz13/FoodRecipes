@@ -2,9 +2,10 @@
 <resources>
 
     <!-- Margin -->
+    <dimen name="very_large_margin">24dp</dimen>
     <dimen name="large_margin">20dp</dimen>
     <dimen name="normal_margin">16dp</dimen>
-    <dimen name="small_margin">10dp</dimen>
+    <dimen name="small_margin">12dp</dimen>
     <dimen name="very_small_margin">5dp</dimen>
 
     <!-- TextSize -->
@@ -21,7 +22,7 @@
     <dimen name="size_image_recipes">200dp</dimen>
     <dimen name="height_title_placeholder">50dp</dimen>
     <dimen name="size_describe_placeholder">65dp</dimen>
-    <dimen name="very_large_margin">25dp</dimen>
+    <dimen name="height_btn_bottom_sheet">60dp</dimen>
 
 
 </resources>
