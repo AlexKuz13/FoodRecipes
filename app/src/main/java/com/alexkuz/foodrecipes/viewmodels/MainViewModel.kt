@@ -35,9 +35,11 @@ class MainViewModel @Inject constructor(
     /** RETROFIT */
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
+
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)
     }
+
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
         recipesResponse.value = NetworkResult.Loading()
@@ -52,6 +54,7 @@ class MainViewModel @Inject constructor(
             recipesResponse.value = NetworkResult.Error("No Internet Connection")
         }
     }
+
 
     private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe> {
         return when {
