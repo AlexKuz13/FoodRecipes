@@ -1,6 +1,9 @@
 package com.alexkuz.foodrecipes.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ExtendedIngredient(
     val amount: Double,
     val consistency: String,
@@ -8,4 +11,4 @@ data class ExtendedIngredient(
     val name: String,
     val original: String,
     val unit: String
-)
+) : Parcelable

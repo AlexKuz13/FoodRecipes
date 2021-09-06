@@ -1,11 +1,16 @@
 package com.alexkuz.foodrecipes.models
 
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
+
+@Parcelize
 data class Result(
     val aggregateLikes: Int,
     val cheap: Boolean,
     val dairyFree: Boolean,
-    val extendedIngredients: List<ExtendedIngredient>,
+    val extendedIngredients: @RawValue List<ExtendedIngredient>,
     val glutenFree: Boolean,
     val id: Int,
     val image: String,
@@ -17,4 +22,4 @@ data class Result(
     val vegan: Boolean,
     val vegetarian: Boolean,
     val veryHealthy: Boolean
-)
+) : Parcelable
