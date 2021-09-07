@@ -12,6 +12,7 @@ import coil.load
 import com.alexkuz.foodrecipes.R
 import com.alexkuz.foodrecipes.models.Result
 import com.alexkuz.foodrecipes.ui.fragments.recipes.RecipesFragmentDirections
+import org.jsoup.Jsoup
 
 class RecipesRowBinding {
 
@@ -48,10 +49,10 @@ class RecipesRowBinding {
         }
 
 
-        @BindingAdapter("applyVeganColor")
+        @BindingAdapter("applyGreenColor")
         @JvmStatic
-        fun applyVeganColor(view: View, vegan: Boolean) {
-            if (vegan) {
+        fun applyVeganColor(view: View, diet: Boolean) {
+            if (diet) {
                 when (view) {
                     is TextView -> {
                         view.setTextColor(
@@ -70,6 +71,16 @@ class RecipesRowBinding {
                         )
                     }
                 }
+            }
+        }
+
+
+        @BindingAdapter("parseHtml")
+        @JvmStatic
+        fun parseHtml(textView: TextView, description: String?) {
+            if (description != null) {
+                val desc = Jsoup.parse(description).text()
+                textView.text = desc
             }
         }
     }

@@ -23,6 +23,8 @@
     <dimen name="height_title_placeholder">50dp</dimen>
     <dimen name="size_describe_placeholder">65dp</dimen>
     <dimen name="height_btn_bottom_sheet">60dp</dimen>
+    <dimen name="height_image_overview">250dp</dimen>
+    <dimen name="height_gradient_overview">100dp</dimen>
 
 
 </resources>
