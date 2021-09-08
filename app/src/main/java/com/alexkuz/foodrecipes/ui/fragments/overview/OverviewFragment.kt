@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.alexkuz.foodrecipes.databinding.FragmentOverviewBinding
 import com.alexkuz.foodrecipes.models.Result
+import com.alexkuz.foodrecipes.util.Constants
 
 
 class OverviewFragment : Fragment() {
@@ -19,7 +20,7 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentOverviewBinding.inflate(inflater, container, false)
-        val result: Result? = arguments?.getParcelable("recipeBundle")
+        val result: Result? = arguments?.getParcelable(Constants.RESULT_RECIPE_KEY)
         mBinding.result = result
         return mBinding.root
     }
