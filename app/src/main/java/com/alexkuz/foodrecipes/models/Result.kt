@@ -15,7 +15,7 @@ data class Result(
     val id: Int,
     val image: String,
     val readyInMinutes: Int,
-    val sourceName: String,
+    val sourceName: String?,
     val sourceUrl: String,
     val summary: String,
     val title: String,

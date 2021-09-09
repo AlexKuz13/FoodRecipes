@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.alexkuz.foodrecipes.data.database.RecipesEntity
+import com.alexkuz.foodrecipes.data.database.entities.RecipesEntity
 import com.alexkuz.foodrecipes.models.FoodRecipe
 import com.alexkuz.foodrecipes.util.NetworkResult
 
