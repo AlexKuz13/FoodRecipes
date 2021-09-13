@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import coil.load
 import com.alexkuz.foodrecipes.R
 import com.alexkuz.foodrecipes.models.Result
+import com.alexkuz.foodrecipes.ui.fragments.favourites.FavouriteRecipesFragmentDirections
 import com.alexkuz.foodrecipes.ui.fragments.recipes.RecipesFragmentDirections
 import org.jsoup.Jsoup
 
@@ -31,6 +32,35 @@ class RecipesRowBinding {
                 }
             }
         }
+
+        @BindingAdapter("onFavouriteRecipeClickListener")
+        @JvmStatic
+        fun onFavouriteRecipeClickListener(recipesRowLayout: ConstraintLayout, result: Result) {
+            recipesRowLayout.setOnClickListener {
+                try {
+                    val action =
+                        FavouriteRecipesFragmentDirections.actionFavouriteRecipesFragmentToDetailsActivity(
+                            result
+                        )
+                    recipesRowLayout.findNavController().navigate(action)
+                } catch (e: Exception) {
+                    Log.i("TAG", e.toString())
+                }
+            }
+        }
+
+
+//        fun onFavouriteRecipeLongClickListener(
+//            recipesRowLayout: ConstraintLayout,
+//            requireActivity: FragmentActivity,
+//            favouriteRecipeAdapter: FavouriteRecipeAdapter
+//        ) {
+//            recipesRowLayout.setOnLongClickListener {
+//                requireActivity.startActionMode(favouriteRecipeAdapter.callback)
+//                true
+//            }
+//
+//        }
 
         @BindingAdapter("setIntToTextView")
         @JvmStatic

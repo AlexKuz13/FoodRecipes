@@ -29,6 +29,12 @@
 
     // Ingredients Row Layout
     <color name="strokeColor">@color/lightMediumGray</color>
-    <color name="cardBackgroundColor">@color/white</color>
+    <color name="cardBackgroundColor">#01FFFFFF</color>
+    <color name="cardBackgroundLightColor">#306200EA</color>
     <color name="titleColor">@color/darker</color>
+
+    // Action mode
+    <color name="statusBarColor">@color/purple_700</color>
+    <color name="contextualStatusBarColor">@color/darker</color>
+    <color name="contextualActionBarColor">@color/dark</color>
 </resources>

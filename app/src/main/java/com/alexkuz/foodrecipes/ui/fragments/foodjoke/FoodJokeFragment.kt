@@ -18,7 +18,7 @@ class FoodJokeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFoodJokeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentFoodJokeBinding.inflate(inflater, container, false)
         return mBinding.root
     }
 

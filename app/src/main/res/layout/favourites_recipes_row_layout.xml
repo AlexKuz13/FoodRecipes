@@ -11,8 +11,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/favoriteRecipesRowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        onFavouriteRecipeClickListener="@{favoritesEntity.result}"
         android:layout_marginTop="@dimen/very_small_margin"
         android:layout_marginBottom="@dimen/very_small_margin">
 
