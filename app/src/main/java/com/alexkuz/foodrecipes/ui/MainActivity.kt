@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_FoodRecipes)
         _binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(mBinding.root)
 
         navController = findNavController(R.id.navHostFragment)

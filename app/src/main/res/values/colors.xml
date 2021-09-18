@@ -10,6 +10,7 @@
 
     <color name="lightGray">#F9F9F9</color>
     <color name="mediumGray">#D1D1D1</color>
+    <color name="gray">#888888</color>
     <color name="lightMediumGray">#80D1D1D1</color>
     <color name="darkGray">#4B4B4B</color>
     <color name="dark">#313C44</color>
@@ -19,22 +20,28 @@
     <color name="green">#00C980</color>
 
 
+    <!-- LIGHT THEME -->
+
+    <color name="backgroundColor">@color/lightGray</color>
+    <color name="placeholderColor">@color/mediumGray</color>
+    <color name="itemColor">@color/gray</color>
+
     // Custom Chip Style
     <color name="checkedChipBackgroundColor">#206200EA</color>
     <color name="chipBackgroundColor">@color/lightGray</color>
     <color name="checkedChipTextColor">@color/purple_500</color>
     <color name="chipTextColor">@color/darkGray</color>
 
-    <color name="actionBarBackgroundColor">@color/purple_500</color>
-
-    // Ingredients Row Layout
+    // Custom CardView Style
     <color name="strokeColor">@color/lightMediumGray</color>
-    <color name="cardBackgroundColor">#01FFFFFF</color>
-    <color name="cardBackgroundLightColor">#306200EA</color>
+    <color name="cardBackgroundColor">@color/white</color>
+    <color name="cardBackgroundLightColor">#106200EA</color>
     <color name="titleColor">@color/darker</color>
+    <color name="descriptionColor">@color/darkGray</color>
 
-    // Action mode
     <color name="statusBarColor">@color/purple_700</color>
     <color name="contextualStatusBarColor">@color/darker</color>
     <color name="contextualActionBarColor">@color/dark</color>
+    <color name="actionBarBackgroundColor">@color/purple_500</color>
+
 </resources>

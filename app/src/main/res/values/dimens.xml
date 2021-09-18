@@ -28,6 +28,7 @@
 
     <!-- Ingredients Row Layout -->
     <dimen name="size_img_ingredients_row">100dp</dimen>
+    <dimen name="small_corner_radius">6dp</dimen>
 
 
 </resources>

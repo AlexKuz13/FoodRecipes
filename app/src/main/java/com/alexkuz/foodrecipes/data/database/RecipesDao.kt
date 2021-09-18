@@ -2,6 +2,7 @@ package com.alexkuz.foodrecipes.data.database
 
 import androidx.room.*
 import com.alexkuz.foodrecipes.data.database.entities.FavouritesEntity
+import com.alexkuz.foodrecipes.data.database.entities.FoodJokeEntity
 import com.alexkuz.foodrecipes.data.database.entities.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -11,7 +12,7 @@ interface RecipesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipes(recipesEntity: RecipesEntity)
 
-    @Query("SELECT * FROM recipes_table ORDER BY id ASC")
+    @Query("SELECT * FROM recipes_table")
     fun readRecipes(): Flow<List<RecipesEntity>>
 
 
@@ -26,5 +27,11 @@ interface RecipesDao {
 
     @Query("DELETE FROM favourites_recipes_table")
     suspend fun deleteAllFavoriteRecipes()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFoodJoke(foodJokeEntity: FoodJokeEntity)
+
+    @Query("SELECT * FROM food_joke_table")
+    fun readFoodJoke(): Flow<List<FoodJokeEntity>>
 
 }

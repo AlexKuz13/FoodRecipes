@@ -101,6 +101,26 @@ class RecipesRowBinding {
                         )
                     }
                 }
+            } else {
+                when (view) {
+                    is TextView -> {
+                        view.setTextColor(
+                            ContextCompat.getColor(
+                                view.context,
+                                R.color.itemColor
+                            )
+                        )
+                    }
+                    is ImageView -> {
+                        view.setColorFilter(
+                            ContextCompat.getColor(
+                                view.context,
+                                R.color.itemColor
+                            )
+                        )
+                    }
+                }
+
             }
         }
 
