@@ -28,10 +28,5 @@ class IngredientRowBinding {
             textView.text = text.capitalize(Locale.ROOT)
         }
 
-        @BindingAdapter("setDoubleToTextView")
-        @JvmStatic
-        fun setDoubleToTextView(textView: TextView, value: Double) {
-            textView.text = value.toString()
-        }
     }
 }

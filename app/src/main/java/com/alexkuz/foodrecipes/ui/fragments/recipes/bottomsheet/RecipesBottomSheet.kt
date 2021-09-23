@@ -65,7 +65,7 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
         }
 
         mBinding.applyBtn.setOnClickListener {
-            recipesViewModel.saveMealAndDietType(
+            recipesViewModel.saveMealAndDietTypeTemp(
                 mealTypeChip,
                 mealTypeChipId,
                 dietTypeChip,
@@ -84,14 +84,15 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
             try {
                 val selectedChip = chipGroup.findViewById<Chip>(chipId)
                 selectedChip.isChecked = true
+                chipGroup.requestChildFocus(selectedChip, selectedChip)
             } catch (e: Exception) {
                 Log.d("RecipesBottomSheet", e.message.toString())
             }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

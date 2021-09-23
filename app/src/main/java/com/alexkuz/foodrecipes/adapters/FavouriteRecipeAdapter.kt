@@ -58,6 +58,7 @@ class FavouriteRecipeAdapter(
         val currentFavouritesEntity = oldFavoriteRecipesList[position]
         holder.bind(currentFavouritesEntity)
 
+        saveItemStateOnScroll(currentFavouritesEntity, holder)
         /**
          * Single Click Listener
          * */
@@ -84,9 +85,17 @@ class FavouriteRecipeAdapter(
                 applySelection(holder, currentFavouritesEntity)
                 true
             } else {
-                multiSelection = false
-                false
+                applySelection(holder, currentFavouritesEntity)
+                true
             }
+        }
+    }
+
+    private fun saveItemStateOnScroll(currentRecipe: FavouritesEntity, holder: MyViewHolder) {
+        if (selectedRecipes.contains(currentRecipe)) {
+            changeRecipeStyle(holder, R.color.purple_500)
+        } else {
+            changeRecipeStyle(holder, R.color.strokeColor)
         }
     }
 
@@ -109,7 +118,10 @@ class FavouriteRecipeAdapter(
 
     private fun applyActionModeTitle() {
         when (selectedRecipes.size) {
-            0 -> mActionMode.finish()
+            0 -> {
+                multiSelection = false
+                mActionMode.finish()
+            }
             1 -> mActionMode.title = "${selectedRecipes.size} item selected"
             else -> mActionMode.title = "${selectedRecipes.size} items selected"
         }

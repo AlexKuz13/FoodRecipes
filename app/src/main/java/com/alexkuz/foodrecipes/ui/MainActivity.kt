@@ -14,14 +14,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val mBinding get() = _binding!!
+    private lateinit var mBinding: ActivityMainBinding
+
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_FoodRecipes)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(mBinding.root)
 
@@ -42,8 +42,5 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+
 }

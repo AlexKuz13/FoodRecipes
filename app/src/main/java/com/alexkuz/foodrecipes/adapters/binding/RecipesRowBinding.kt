@@ -50,25 +50,6 @@ class RecipesRowBinding {
         }
 
 
-//        fun onFavouriteRecipeLongClickListener(
-//            recipesRowLayout: ConstraintLayout,
-//            requireActivity: FragmentActivity,
-//            favouriteRecipeAdapter: FavouriteRecipeAdapter
-//        ) {
-//            recipesRowLayout.setOnLongClickListener {
-//                requireActivity.startActionMode(favouriteRecipeAdapter.callback)
-//                true
-//            }
-//
-//        }
-
-        @BindingAdapter("setIntToTextView")
-        @JvmStatic
-        fun setIntToTextView(textView: TextView, value: Int) {
-            textView.text = value.toString()
-        }
-
-
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic
         fun loadImageFromUrl(imageView: ImageView, imageUrl: String) {
